@@ -1,0 +1,57 @@
+# Realistic inputs for Thing Refiner. Fetched by lib/main.js.
+
+[[examples]]
+goal = "I want to plan a birthday party"
+product = ""
+context = """
+It is for my daughter, who is turning seven. Her friends are all into
+dinosaurs. Small flat, about 200 to spend, and it is in three weeks.
+"""
+
+[[examples]]
+goal = "I want to write the next chapter of my story"
+product = """
+Mira watched the boat come in for the third morning in a row. Nobody on the dock
+looked at it, and nobody looked at her.
+"""
+context = """
+The outline so far: a lighthouse keeper finds a boat with nobody in it, and the
+town has stopped speaking to him. This chapter has to get her off the island.
+"""
+
+[[examples]]
+goal = "I want to write a blog post"
+product = ""
+context = """
+About the three months I spent rewriting the same function. The audience is
+other engineers, mostly juniors. I want it useful, not funny.
+"""
+
+[[examples]]
+goal = "I want to write a proposal doc for a new project"
+product = ""
+context = """
+For internal approval. The reader is my director, who cares about cost and
+headcount. It needs a one-paragraph summary at the top and a rough timeline.
+"""
+
+[[examples]]
+goal = "I want to update my resume"
+product = """
+## Experience
+
+- 2019-2024, Acme Corp, engineer
+- 2016-2019, Northwind, junior engineer
+"""
+context = """
+I am applying for product roles. The skills I want to highlight are the two
+migrations I led and the three juniors I mentored.
+"""
+
+[[examples]]
+goal = "I want to outline my slides for a talk"
+product = ""
+context = """
+A 30-minute slot at a local conference. The audience is mostly backend engineers,
+few of whom have used this. I want them to leave able to try it.
+"""

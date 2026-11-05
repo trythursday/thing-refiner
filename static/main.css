@@ -1,0 +1,251 @@
+[hidden] {
+  display: none !important;
+}
+
+:root {
+  --w-body: 100%;
+}
+
+/* Header */
+
+header {
+  margin-block-end: 1.5rem;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin-block: 0;
+}
+
+header p {
+  font-size: 1.4rem;
+  margin-block: 0.4rem 0;
+}
+
+/* The shell: the whole app in one viewport, no page scroll */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#root,
+main,
+.app {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* The app */
+
+.app {
+  --pane-gap: 3rem;
+}
+
+.panes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: minmax(0, 1fr);
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+  gap: var(--pane-gap);
+}
+
+.pane {
+  min-width: 0;
+  min-height: 0;
+}
+
+.pane-input,
+.pane-output {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.pane-input {
+  gap: 2rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-product {
+  flex: 1;
+  min-height: 0;
+}
+
+.field-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.field-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.save-status {
+  color: var(--c-gray);
+  font-size: var(--f-size-small);
+}
+
+dialog {
+  width: min(70ch, 100%);
+  min-width: 0;
+  max-width: 100%;
+}
+
+dialog footer {
+  text-align: end;
+}
+
+#context-dialog textarea {
+  min-height: 16ch;
+}
+
+.help {
+  font-size: var(--f-size-small);
+}
+
+.required {
+  color: var(--c-red);
+  font-weight: bold;
+}
+
+/* Output */
+
+.pane-output {
+  gap: 1.5rem;
+}
+
+.result {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.result > :first-child {
+  margin-block-start: 0;
+}
+
+.result:empty::before {
+  content: "Nothing refined yet.";
+  color: var(--c-gray);
+}
+
+.result-head {
+  display: none;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Actions */
+
+.action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  width: calc(50% - var(--pane-gap) / 2);
+  gap: 1rem;
+  margin-block-start: 1.5rem;
+}
+
+.action-left,
+.action-right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Filled red, so it reads as the one destructive thing on the page. */
+
+.danger {
+  background-color: var(--c-red);
+  border-color: var(--c-red);
+  color: var(--c-bg);
+}
+
+/* Footer */
+
+footer {
+  flex: none;
+  margin-block-start: 1.5rem;
+  font-size: 1.4rem;
+}
+
+footer p,
+footer p a:any-link {
+  color: var(--c-gray);
+}
+
+footer p {
+  text-align: center;
+}
+
+#provider-note:not([hidden])::after {
+  content: " ·";
+}
+
+/* One column, and Refine hands the whole screen to the response */
+
+@media (max-aspect-ratio: 66/50) {
+  .panes {
+    grid-template-columns: 1fr;
+  }
+
+  /* The two-pane width stops applying the moment the panes collapse. */
+  .action-bar {
+    width: auto;
+    justify-content: center;
+  }
+
+  .action-left,
+  .action-right {
+    justify-content: center;
+  }
+
+  .app:not([data-view="result"]) .pane-output {
+    display: none;
+  }
+
+  .app[data-view="result"] {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    padding: 2rem;
+    background-color: var(--c-bg);
+    overflow: hidden;
+  }
+
+  .app[data-view="result"] .pane-input,
+  .app[data-view="result"] .action-bar {
+    display: none;
+  }
+
+  .result-head {
+    display: flex;
+  }
+}

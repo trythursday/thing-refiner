@@ -1,0 +1,100 @@
+/* Everything here targets EasyMDE or CodeMirror classes: the library bent to
+   fieber. The rest of the app's styling lives in main.css. */
+
+.EasyMDEContainer {
+  margin-block-start: 0.5rem;
+  border: 2px solid var(--c-gray);
+  border-radius: 0.5rem;
+}
+
+/* Fullscreen floats the toolbar and the editor out of the panel, so the
+   panel's own border has nothing left to enclose. */
+.EasyMDEContainer:has(.editor-toolbar.fullscreen) {
+  border: 0;
+}
+
+.EasyMDEContainer .editor-toolbar {
+  border: 0;
+  border-block-end: 2px solid var(--c-gray);
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.EasyMDEContainer .editor-toolbar.fullscreen {
+  background-color: var(--c-bg);
+}
+
+.EasyMDEContainer .editor-toolbar button {
+  min-width: 0;
+  padding: 0.4rem 0.6rem;
+  border: 0;
+  background: none;
+  color: var(--c-fg);
+  font-size: 1.4rem;
+}
+
+.EasyMDEContainer .editor-toolbar button:hover,
+.EasyMDEContainer .editor-toolbar button.active {
+  background-color: var(--c-surface);
+  text-decoration: none;
+}
+
+.EasyMDEContainer .editor-toolbar i.separator {
+  border-inline: 0;
+  border-inline-start: 1px solid var(--c-gray);
+}
+
+.EasyMDEContainer .CodeMirror {
+  padding: 1rem;
+  border: 0;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background-color: var(--c-bg);
+  color: var(--c-fg);
+  font-family: var(--f-code);
+  font-size: var(--f-size-small);
+}
+
+/* CodeMirror hardcodes a black caret and light selection colours, which
+   disappear against fieber's dark theme. */
+
+.EasyMDEContainer .CodeMirror .CodeMirror-cursor {
+  border-inline-start-color: var(--c-fg);
+}
+
+.EasyMDEContainer .CodeMirror-selected,
+.EasyMDEContainer .CodeMirror-focused .CodeMirror-selected,
+.EasyMDEContainer .CodeMirror-line::selection,
+.EasyMDEContainer .CodeMirror-line > span::selection,
+.EasyMDEContainer .CodeMirror-line > span > span::selection {
+  background-color: color-mix(in srgb, var(--c-accent) 30%, transparent);
+}
+
+.EasyMDEContainer .cm-s-easymde .cm-comment {
+  background-color: var(--c-surface);
+}
+
+.editor-preview,
+.editor-preview-side,
+.CodeMirror-fullscreen {
+  background-color: var(--c-bg);
+  color: var(--c-fg);
+}
+
+/* The editor fills its pane rather than sizing to its content, so it has to
+   re-measure when the pane resizes. */
+
+.field-product .EasyMDEContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.field-product .EasyMDEContainer .editor-toolbar {
+  flex: none;
+}
+
+.field-product .EasyMDEContainer .CodeMirror {
+  flex: 1;
+  height: auto;
+  min-height: 0;
+}
