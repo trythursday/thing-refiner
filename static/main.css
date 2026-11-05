@@ -45,6 +45,16 @@ main,
   min-height: 0;
 }
 
+/* The setup panel is taller than a phone viewport. The shell cannot scroll, so
+   without this the panel shrinks as a flex item and spills over the footer. */
+main {
+  overflow-y: auto;
+}
+
+main > ai-setup {
+  flex: none;
+}
+
 /* The app */
 
 .app {
